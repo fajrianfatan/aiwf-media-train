@@ -17,6 +17,22 @@ class ArtikelController extends Controller
         );
     }
 
+    public function getById(Request $request)
+    {
+        $id = $request->input('id');
+
+        if ($id) {
+            $artikels = Artikel::where('id', $id)->get();
+        } else {
+            $artikels = Artikel::orderBy('tanggal_terbit', 'desc')->get();
+        }
+
+        return view('artikel.index', [
+            'title' => 'artikel',
+            'artikels' => $artikels,
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */

@@ -49,3 +49,6 @@ Route::resource('/penulis', PenulisController::class)->parameters([
 Route::resource('berita', BeritaController::class)->parameters([
     'berita' => 'berita'
 ]);
+
+Route::get('/artikel/', [ArtikelController::class, 'getById'])->name('artikel.getById');
+
