@@ -52,7 +52,24 @@ class PenulisController extends Controller
         Penulis::destroy($penulis);
        return redirect()->route('penulis.index')->with('success','hapus penulis berhasil');
     }
+    public function getById(Request $request)
+    {
+        $id = $request->input('id');
 
+        if ($id) {
+            $penulis = Penulis::where('id', $id)->first();
+
+            if (!$penulis) {
+                return response()->json([
+                    'message' => 'Penulis tidak ditemukan'
+                ], 404);
+            }
+        } else {
+            $penulis = Penulis::orderBy('tanggal_terbit', 'desc')->get();
+        }
+
+        return response()->json($penulis, 200);
+    }
     /**
      * Show the form for editing the specified resource.
      */

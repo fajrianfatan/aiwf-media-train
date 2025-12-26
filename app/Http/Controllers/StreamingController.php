@@ -19,7 +19,24 @@ class StreamingController extends Controller
         compact('streamings')
         );
     }
+    public function getById(Request $request)
+    {
+        $id = $request->input('id');
 
+        if ($id) {
+            $streamings = Streaming::where('id', $id)->first();
+
+            if (!$streamings) {
+                return response()->json([
+                    'message' => 'Streaming tidak ditemukan'
+                ], 404);
+            }
+        } else {
+            $streamings = Streaming::orderBy('tanggal_terbit', 'desc')->get();
+        }
+
+        return response()->json($streamings, 200);
+    }
     /**
      * Show the form for creating a new resource.
      */

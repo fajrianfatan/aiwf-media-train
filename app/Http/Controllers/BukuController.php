@@ -21,7 +21,24 @@ class BukuController extends Controller
         compact('bukus')
         );
     }
+    public function getById(Request $request)
+    {
+        $id = $request->input('id');
 
+        if ($id) {
+            $bukus = Buku::where('id', $id)->first();
+
+            if (!$bukus) {
+                return response()->json([
+                    'message' => 'Buku tidak ditemukan'
+                ], 404);
+            }
+        } else {
+            $bukus = Buku::orderBy('tanggal_terbit', 'desc')->get();
+        }
+
+        return response()->json($bukus, 200);
+    }
     /**
      * Show the form for creating a new resource.
      */

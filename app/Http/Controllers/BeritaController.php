@@ -19,7 +19,24 @@ class BeritaController extends Controller
         compact('beritas')
         );
     }
+    public function getById(Request $request)
+    {
+        $id = $request->input('id');
 
+        if ($id) {
+            $beritas = Berita::where('id', $id)->first();
+
+            if (!$beritas) {
+                return response()->json([
+                    'message' => 'Berita tidak ditemukan'
+                ], 404);
+            }
+        } else {
+            $beritas = Berita::orderBy('tanggal_terbit', 'desc')->get();
+        }
+
+        return response()->json($beritas, 200);
+    }
     /**
      * Show the form for creating a new resource.
      */

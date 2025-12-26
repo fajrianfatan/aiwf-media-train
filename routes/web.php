@@ -51,5 +51,7 @@ Route::resource('berita', BeritaController::class)->parameters([
 ]);
 
 Route::get('/api/artikel', [ArtikelController::class, 'getById'])->name('api.artikel.get');
-
-
+Route::get('/api/berita', [BeritaController::class, 'getById'])->name('api.berita.get');
+Route::get('/api/buku', [BukuController::class, 'getById'])->name('api.buku.get');
+Route::get('/api/penulis', [PenulisController::class, 'getById'])->name('api.penulis.get');
+Route::get('/api/streaming', [StreamingController::class, 'getById'])->name('api.streaming.get');
