@@ -22,16 +22,20 @@ class ArtikelController extends Controller
         $id = $request->input('id');
 
         if ($id) {
-            $artikels = Artikel::where('id', $id)->get();
+            $artikels = Artikel::where('id', $id)->first();
+
+            if (!$artikels) {
+                return response()->json([
+                    'message' => 'Artikel tidak ditemukan'
+                ], 404);
+            }
         } else {
             $artikels = Artikel::orderBy('tanggal_terbit', 'desc')->get();
         }
 
-        return view('artikel.index', [
-            'title' => 'artikel',
-            'artikels' => $artikels,
-        ]);
+        return response()->json($artikels, 200);
     }
+
 
     /**
      * Show the form for creating a new resource.
