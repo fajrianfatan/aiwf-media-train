@@ -50,5 +50,6 @@ Route::resource('berita', BeritaController::class)->parameters([
     'berita' => 'berita'
 ]);
 
-Route::get('/artikel/get', [ArtikelController::class, 'getById'])->name('artikel.getById');
+Route::get('/api/artikel', [ArtikelController::class, 'getById'])->name('api.artikel.get');
+
 
