@@ -36,6 +36,34 @@ class ArtikelController extends Controller
         return response()->json($artikels, 200);
     }
 
+    public function getByJudul(Request $request)
+    {
+        $judul = $request->input('judul');
+
+        if (!$judul) {
+            return response()->json([
+                'message' => 'Parameter judul wajib diisi, gunakan ?judul=kata'
+            ], 400);
+        }
+
+        $artikels = Artikel::where('judul', 'LIKE', '%' . $judul . '%')
+            ->orderBy('tanggal_terbit', 'desc')
+            ->get();
+
+        if ($artikels->isEmpty()) {
+            return response()->json([
+                'message' => 'Artikel dengan judul tersebut tidak ditemukan'
+            ], 404);
+        }
+
+        return response()->json([
+            'success' => true,
+            'cari_judul' => $judul,
+            'data' => $artikels
+        ], 200);
+    }
+
+
 
     /**
      * Show the form for creating a new resource.

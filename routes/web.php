@@ -50,7 +50,10 @@ Route::resource('berita', BeritaController::class)->parameters([
     'berita' => 'berita'
 ]);
 
-Route::get('/api/artikel', [ArtikelController::class, 'getById'])->name('api.artikel.get');
+Route::prefix('api')->group(function () {
+    Route::get('/artikel', [ArtikelController::class, 'getById']);
+    Route::get('/artikel/judul', [ArtikelController::class, 'getByJudul']);
+});
 Route::get('/api/berita', [BeritaController::class, 'getById'])->name('api.berita.get');
 Route::get('/api/buku', [BukuController::class, 'getById'])->name('api.buku.get');
 Route::get('/api/penulis', [PenulisController::class, 'getById'])->name('api.penulis.get');
