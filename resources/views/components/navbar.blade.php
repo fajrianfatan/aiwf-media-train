@@ -99,6 +99,7 @@
                         </ul>
                     </details>
                 </li>
+                <li><a href="{{ route('penulis.index')}}" class="text-white">Penulis</a></li>
                 <li><a href="{{ route('logs')}}" class="text-white">Logs</a></li>
             </ul>
         </div>
@@ -240,6 +241,7 @@
                     </ul>
                 </details>
             </li>
+            <li><a href="{{ route('penulis.index')}}" class="text-white">Penulis</a></li>
             <li><a href="{{ route('logs')}}" class="text-white">Logs</a></li>
         </ul>
     </div>
