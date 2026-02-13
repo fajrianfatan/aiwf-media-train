@@ -90,7 +90,9 @@ class ArtikelController extends Controller
             'body'=>'required',
        ]);
        Artikel::create($request->all());
-       return redirect()->route('artikel.index')->with('success','artikel berhasil di tambahkan');
+    //    return redirect()->route('artikel.index')->with('success','artikel berhasil di tambahkan');
+    return redirect()->route('artikel.index'); // after observer
+
     }
 
     /**
@@ -135,8 +137,11 @@ class ArtikelController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Artikel $artikel)
     {
-
+        $artikel->delete();
+        return redirect()->route('artikel.index')
+            ->with('success','Artikel berhasil dihapus');
     }
+
 }
