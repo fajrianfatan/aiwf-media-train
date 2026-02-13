@@ -62,8 +62,7 @@
                                     </a>
 
                                     {{-- Hapus --}}
-                                    <form action="{{ route('berita.destroy', $berita->id) }}"
-                                        method="POST"
+                                    <form action="{{ route('berita.destroy', $berita->id) }}" method="POST"
                                         onsubmit="return confirm('Apakah anda ingin menghapus berita ini?')">
                                         @csrf
                                         @method('DELETE')
@@ -87,8 +86,8 @@
             @foreach ($beritas as $berita)
                 <div class="card bg-white border border-gray-200 shadow-sm rounded-xl">
                     <figure class="rounded-t-xl overflow-hidden">
-                        <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                            alt="Berita" class="w-full h-40 object-cover">
+                        <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp" alt="Berita"
+                            class="w-full h-40 object-cover">
                     </figure>
 
                     <div class="card-body">
@@ -118,5 +117,15 @@
         </div>
 
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    @if(session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil',
+                text: '{{ session('success') }}',
+            });
+        </script>
+    @endif
 </body>

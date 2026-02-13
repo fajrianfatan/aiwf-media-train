@@ -12,6 +12,7 @@ class ArtikelObserver
 
         ActivityLog::create([
             'model' => 'Artikel',
+            'method' => 'Create',
             'data'  => $artikel->toArray(),
         ]);
     }
@@ -19,10 +20,20 @@ class ArtikelObserver
     public function updated(Artikel $artikel)
     {
         session()->flash('success', 'Artikel berhasil diupdate');
+        ActivityLog::create([
+            'model' => 'Artikel',
+            'method' => 'Update',
+            'data'  => $artikel->toArray(),
+        ]);
     }
 
     public function deleted(Artikel $artikel)
     {
         session()->flash('success', 'Artikel berhasil dihapus');
+        ActivityLog::create([
+            'model' => 'Artikel',
+            'method' => 'Delete',
+            'data'  => $artikel->toArray(),
+        ]);
     }
 }

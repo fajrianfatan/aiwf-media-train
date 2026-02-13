@@ -108,8 +108,10 @@ class BeritaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Berita $berita)
     {
-
+        $berita->delete();
+        return redirect()->route('berita.index')
+            ->with('success','Berita berhasil dihapus');
     }
 }

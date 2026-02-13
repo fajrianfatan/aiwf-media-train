@@ -107,8 +107,10 @@ class BukuController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Buku $buku)
     {
-
+        $buku->delete();
+        return redirect()->route('buku.index')
+            ->with('success','Buku berhasil dihapus');
     }
 }

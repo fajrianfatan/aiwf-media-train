@@ -80,18 +80,18 @@
         </div>
 
     </div>
-    {{ session('success') }}
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-@if(session('success'))
-<script>
-    Swal.fire({
-        icon: 'success',
-        title: 'Berhasil',
-        text: '{{ session('success') }}',
-    });
-</script>
-@endif
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    @if(session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil',
+                text: '{{ session('success') }}',
+            });
+        </script>
+    @endif
 
 </body>

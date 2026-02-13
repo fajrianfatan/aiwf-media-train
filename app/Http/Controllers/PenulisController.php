@@ -98,8 +98,10 @@ class PenulisController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Penulis $penulis)
     {
-        //
+        $penulis->delete();
+        return redirect()->route('penulis.index')
+            ->with('success','Penulis berhasil dihapus');
     }
 }

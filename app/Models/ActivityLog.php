@@ -8,6 +8,7 @@ class ActivityLog extends Model
 {
     protected $fillable = [
         'model',
+        'method',
         'data'
     ];
 
