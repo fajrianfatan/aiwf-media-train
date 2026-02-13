@@ -9,6 +9,7 @@ use App\Http\Controllers\ArtikelController;
 // use App\Http\Controllers\KajianController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\PenulisController;
+use App\Http\Controllers\ActivityLogController;
 
 Route::get('/login', function () {
     return view('/login/index',['title'=>'Login']);
@@ -49,6 +50,10 @@ Route::resource('/penulis', PenulisController::class)->parameters([
 Route::resource('berita', BeritaController::class)->parameters([
     'berita' => 'berita'
 ]);
+
+Route::get('/logs', [ActivityLogController::class, 'index'])
+    ->name('logs');
+
 
 Route::prefix('api')->group(function () {
     Route::get('/artikel', [ArtikelController::class, 'getById']);
